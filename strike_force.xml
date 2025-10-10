@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- Strike Force Project Manifest -->
+  <!-- This manifest file manages the Strike Force app and ESP32 firmware repositories -->
+  
+  <remote name="github"
+          fetch="git@github.com:lambage/"
+          review="https://github.com/lambage/" />
+  
+  <default revision="main"
+           remote="github"
+           sync-j="4" />
+  
+  <!-- Flutter application repository -->
+  <project path="strike_force_app"
+           name="strike_force_app"
+           remote="github"
+           revision="main">
+    <copyfile src="README.md" dest="README_app.md"/>
+  </project>
+  
+  <!-- ESP32 firmware repository -->
+  <project path="strike_force_esp32"
+           name="strike_force_esp32"
+           remote="github"
+           revision="main">
+    <copyfile src="README.md" dest="README_esp32.md"/>
+  </project>
+</manifest>
