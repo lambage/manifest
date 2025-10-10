@@ -16,7 +16,6 @@
            name="strike_force_app"
            remote="github"
            revision="main">
-    <copyfile src="README.md" dest="README_app.md"/>
   </project>
   
   <!-- ESP32 firmware repository -->
@@ -24,6 +23,5 @@
            name="strike_force_esp32"
            remote="github"
            revision="main">
-    <copyfile src="README.md" dest="README_esp32.md"/>
   </project>
 </manifest>
