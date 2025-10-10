@@ -4,7 +4,7 @@
   <!-- This manifest file manages the Strike Force app and ESP32 firmware repositories -->
   
   <remote name="github"
-          fetch="git@github.com:lambage/"
+          fetch="ssh://git@github.com/lambage/"
           review="https://github.com/lambage/" />
   
   <default revision="main"
