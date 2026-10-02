@@ -14,18 +14,21 @@
            remote="github"
            sync-j="8" />
 
+  <!-- Tagged deps pin revision to the tag's commit SHA (upstream = the tag):
+       repo can't check out an annotated tag object with clone-depth. -->
+
   <!-- Core library -->
-  <project path="third_party/fmt"  name="fmtlib/fmt"  remote="upstream" revision="refs/tags/11.2.0" clone-depth="1" />
-  <project path="third_party/stb"  name="nothings/stb" remote="upstream" revision="master"           clone-depth="1" />
+  <project path="third_party/fmt"  name="fmtlib/fmt"  remote="upstream" revision="40626af88bd7df9a5fb80be7b25ac85b122d6c21" upstream="refs/tags/11.2.0" clone-depth="1" />
+  <project path="third_party/stb"  name="nothings/stb" remote="upstream" revision="master" clone-depth="1" />
 
   <!-- Lua bindings (LAMBUI_BUILD_LUA_BINDINGS) -->
-  <project path="third_party/lua"  name="lua/lua"     remote="upstream" revision="refs/tags/v5.5.0" clone-depth="1" />
+  <project path="third_party/lua"  name="lua/lua"     remote="upstream" revision="a5522f06d2679b8f18534fd6a9968f7eb539dc31" upstream="refs/tags/v5.5.0" clone-depth="1" />
 
   <!-- Tests -->
-  <project path="third_party/googletest" name="google/googletest" remote="upstream" revision="refs/tags/v1.17.0" clone-depth="1" />
+  <project path="third_party/googletest" name="google/googletest" remote="upstream" revision="52eb8108c5bdec04579160ae17225d66034bd723" upstream="refs/tags/v1.17.0" clone-depth="1" />
 
   <!-- Examples -->
-  <project path="third_party/glfw" name="glfw/glfw"       remote="upstream" revision="refs/tags/3.4"            clone-depth="1" />
-  <project path="third_party/glad" name="Dav1dde/glad"    remote="upstream" revision="refs/tags/v0.1.36"        clone-depth="1" />
-  <project path="third_party/SDL"  name="libsdl-org/SDL"  remote="upstream" revision="refs/tags/release-3.4.16" clone-depth="1" />
+  <project path="third_party/glfw" name="glfw/glfw"      remote="upstream" revision="7b6aead9fb88b3623e3b3725ebb42670cbe4c579" upstream="refs/tags/3.4"            clone-depth="1" />
+  <project path="third_party/glad" name="Dav1dde/glad"   remote="upstream" revision="1ecd45775d96f35170458e6b148eb0708967e402" upstream="refs/tags/v0.1.36"        clone-depth="1" />
+  <project path="third_party/SDL"  name="libsdl-org/SDL" remote="upstream" revision="fa2c02bb6e21974a89ea9824bc53c9932abe5f9c" upstream="refs/tags/release-3.4.16" clone-depth="1" />
 </manifest>
