@@ -1,32 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <!-- LambUI and its third-party sources. CMake consumes everything under
-       third_party/ via LAMBUI_DEPS_DIR (no FetchContent downloads). -->
+  <!-- LambUI checkout plus its third-party sources. -->
+  <include name="lambui_deps.xml" />
 
-  <remote name="github"
-          fetch="ssh://git@github.com/lambage/"
-          review="https://github.com/lambage/" />
-  <remote name="upstream"
-          fetch="https://github.com/" />
-
-  <default revision="main"
-           remote="github"
-           sync-j="8" />
-
-  <project path="LambUI" name="LambUI" />
-
-  <!-- Core library -->
-  <project path="third_party/fmt"  name="fmtlib/fmt"  remote="upstream" revision="refs/tags/11.2.0" clone-depth="1" />
-  <project path="third_party/stb"  name="nothings/stb" remote="upstream" revision="master"           clone-depth="1" />
-
-  <!-- Lua bindings (LAMBUI_BUILD_LUA_BINDINGS) -->
-  <project path="third_party/lua"  name="lua/lua"     remote="upstream" revision="refs/tags/v5.5.0" clone-depth="1" />
-
-  <!-- Tests -->
-  <project path="third_party/googletest" name="google/googletest" remote="upstream" revision="refs/tags/v1.17.0" clone-depth="1" />
-
-  <!-- Examples -->
-  <project path="third_party/glfw" name="glfw/glfw"       remote="upstream" revision="refs/tags/3.4"            clone-depth="1" />
-  <project path="third_party/glad" name="Dav1dde/glad"    remote="upstream" revision="refs/tags/v0.1.36"        clone-depth="1" />
-  <project path="third_party/SDL"  name="libsdl-org/SDL"  remote="upstream" revision="refs/tags/release-3.4.16" clone-depth="1" />
+  <!-- git@github.com:lambage/LambUI.git -->
+  <project path="LambUI" name="LambUI.git" remote="github" revision="main" />
 </manifest>

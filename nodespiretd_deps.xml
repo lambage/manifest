@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- NodeSpireTD's dependencies: LambUI plus third-party sources. Shared deps
+       (fmt, stb, lua, googletest, SDL) come from lambui_deps.xml so both repos
+       build against the same checkout. CMake consumes third_party/ via
+       NODESPIRE_DEPS_DIR and LambUI/ via NODESPIRE_LAMBUI_DIR. -->
+  <include name="lambui_deps.xml" />
+
+  <project path="LambUI" name="LambUI.git" remote="github" revision="main" />
+
+  <!-- Vendored codecs are git submodules -->
+  <project path="third_party/SDL_mixer" name="libsdl-org/SDL_mixer" remote="upstream" revision="refs/tags/release-3.2.4" clone-depth="1" sync-s="true" />
+
+  <project path="third_party/spdlog" name="gabime/spdlog"   remote="upstream" revision="refs/tags/v1.17.0" clone-depth="1" />
+  <project path="third_party/json"   name="nlohmann/json"   remote="upstream" revision="refs/tags/v3.12.0" clone-depth="1" />
+
+  <!-- abseil-cpp version must match protobuf's cmake/dependencies.cmake -->
+  <project path="third_party/protobuf"   name="protocolbuffers/protobuf" remote="upstream" revision="refs/tags/v30.2"      clone-depth="1" />
+  <project path="third_party/abseil-cpp" name="abseil/abseil-cpp"        remote="upstream" revision="refs/tags/20250127.0" clone-depth="1" />
+
+  <!-- Boost libraries are git submodules of the superproject -->
+  <project path="third_party/boost" name="boostorg/boost" remote="upstream" revision="refs/tags/boost-1.87.0" clone-depth="1" sync-s="true" />
+
+  <project path="third_party/glm"                   name="g-truc/glm"                                         remote="upstream" revision="refs/tags/1.0.3"                clone-depth="1" />
+  <project path="third_party/volk"                  name="zeux/volk"                                          remote="upstream" revision="refs/tags/vulkan-sdk-1.4.350.1" clone-depth="1" />
+  <project path="third_party/vk-bootstrap"          name="charles-lunarg/vk-bootstrap"                        remote="upstream" revision="refs/tags/v1.4.354"             clone-depth="1" />
+  <project path="third_party/VulkanMemoryAllocator" name="GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator"     remote="upstream" revision="refs/tags/v3.4.0"               clone-depth="1" />
+
+  <!-- simdjson version must be >= what fastgltf's cmake/dependencies.cmake expects -->
+  <project path="third_party/fastgltf" name="spnda/fastgltf"    remote="upstream" revision="refs/tags/v0.9.0"  clone-depth="1" />
+  <project path="third_party/simdjson" name="simdjson/simdjson" remote="upstream" revision="refs/tags/v3.12.3" clone-depth="1" />
+</manifest>
