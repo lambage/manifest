@@ -10,8 +10,8 @@
 
   <!-- Tagged deps pin revision to the tag's commit SHA (see lambui_deps.xml). -->
 
-  <!-- Vendored codecs are git submodules -->
-  <project path="third_party/SDL_mixer" name="libsdl-org/SDL_mixer" remote="upstream" revision="72a81869b45e249e8e67102db4e98dd2441f05a1" upstream="refs/tags/release-3.2.4" clone-depth="1" sync-s="true" />
+  <!-- Codec submodules are not synced; CMake uses the built-in dr_mp3/stb_vorbis decoders -->
+  <project path="third_party/SDL_mixer" name="libsdl-org/SDL_mixer" remote="upstream" revision="72a81869b45e249e8e67102db4e98dd2441f05a1" upstream="refs/tags/release-3.2.4" clone-depth="1" />
 
   <project path="third_party/spdlog" name="gabime/spdlog" remote="upstream" revision="79524ddd08a4ec981b7fea76afd08ee05f83755d" upstream="refs/tags/v1.17.0" clone-depth="1" />
   <project path="third_party/json"   name="nlohmann/json" remote="upstream" revision="55f93686c01528224f448c19128836e7df245f72" upstream="refs/tags/v3.12.0" clone-depth="1" />
@@ -20,8 +20,59 @@
   <project path="third_party/protobuf"   name="protocolbuffers/protobuf" remote="upstream" revision="43e1626812c1b543e56a7bec59dc09eb18248bd2" upstream="refs/tags/v30.2"      clone-depth="1" />
   <project path="third_party/abseil-cpp" name="abseil/abseil-cpp"        remote="upstream" revision="9ac7062b1860d895fb5a8cbf58c3e9ef8f674b5f" upstream="refs/tags/20250127.0" clone-depth="1" />
 
-  <!-- Boost libraries are git submodules of the superproject -->
-  <project path="third_party/boost" name="boostorg/boost" remote="upstream" revision="c89e6267665516192015a9e40955e154466f4f68" upstream="refs/tags/boost-1.87.0" clone-depth="1" sync-s="true" />
+  <!-- Boost superproject plus only the submodules needed by asio+system (dependency
+       closure at boost-1.87.0); revisions are the superproject's gitlinks. sync-s is
+       avoided: repo's submodule support breaks on Windows/worktree checkouts. -->
+  <project path="third_party/boost" name="boostorg/boost" remote="upstream" revision="c89e6267665516192015a9e40955e154466f4f68" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/tools/cmake"           name="boostorg/cmake"              remote="upstream" revision="7f5336b3bf8067bb40da4e8b9940c133271e938a" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/algorithm"        name="boostorg/algorithm"          remote="upstream" revision="32c5a6327cfdca5d41ce0f1d8849b811886daa2f" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/align"            name="boostorg/align"              remote="upstream" revision="5ad7df63cd792fbdb801d600b93cad1a432f0151" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/array"            name="boostorg/array"              remote="upstream" revision="fed8935fdf8e4fe86800fe63426179a4a2fa226b" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/asio"             name="boostorg/asio"               remote="upstream" revision="032545fc569553ff9a1f142dd9cec1a9e070a4f9" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/assert"           name="boostorg/assert"             remote="upstream" revision="2242cfb58269c03328957860006076386e7fa356" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/bind"             name="boostorg/bind"               remote="upstream" revision="68a9e0db858527834f6a791930bcd9a41e09ac9c" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/concept_check"    name="boostorg/concept_check"      remote="upstream" revision="37c9bddf0bdefaaae0ca5852c1a153d9fc43f278" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/config"           name="boostorg/config"             remote="upstream" revision="5e98c6ddd4d58311b52e8f0fdde38c80c04f70ae" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/container"        name="boostorg/container"          remote="upstream" revision="866fd30df1ab723e2104e3de504f4a8c116f2c41" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/container_hash"   name="boostorg/container_hash"     remote="upstream" revision="89e5b98f6bc05841a21069d76cc5adcbee62b9cc" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/context"          name="boostorg/context"            remote="upstream" revision="46effe4588a6edd64d49a853454b5f67f7196e57" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/conversion"       name="boostorg/conversion"         remote="upstream" revision="8a860e05d0f90d539e3e8710f6924668f1292a76" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/core"             name="boostorg/core"               remote="upstream" revision="e3a2e88e4cc9ec39f4c67aef2a20e1b246c2a3b1" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/date_time"        name="boostorg/date_time"          remote="upstream" revision="85e637cb325208c2af9af791c3a1948b4888c6cd" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/describe"         name="boostorg/describe"           remote="upstream" revision="3da6a1e295689612a5ba53e906ad036f84729ede" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/detail"           name="boostorg/detail"             remote="upstream" revision="a54b2619f8f75861836114d02a3fc70c7c9b3474" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/exception"        name="boostorg/exception"          remote="upstream" revision="ece51fe0f7b8273ffc3fa626c3d1442f7af24ef9" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/function"         name="boostorg/function"           remote="upstream" revision="89dfb032f29931358d57819edca15a7f02f10bb6" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/function_types"   name="boostorg/function_types"     remote="upstream" revision="6fba35ace59e9e7b1c3007ca6246a42ed6ead145" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/functional"       name="boostorg/functional"         remote="upstream" revision="6a573e4b8333ee63ee62ce95558c3667348db233" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/fusion"           name="boostorg/fusion"             remote="upstream" revision="53da4e0b2c8cd4969b09fa646d314ac0c414c1ff" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/integer"          name="boostorg/integer"            remote="upstream" revision="2dfe66886d71b9a341433ea8b6ff225cc07da80b" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/intrusive"        name="boostorg/intrusive"          remote="upstream" revision="ec5e251f547aa850e0e41a9ed204a08581931a6b" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/io"               name="boostorg/io"                 remote="upstream" revision="342e4c6d10d586058818daa84201a2d301357a53" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/iterator"         name="boostorg/iterator"           remote="upstream" revision="4b40364d6d110b130207bc498791e00050f94d6b" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/lexical_cast"     name="boostorg/lexical_cast"       remote="upstream" revision="71a184d20fab0577b8bca7b9e9ffd6830cb56018" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/move"             name="boostorg/move"               remote="upstream" revision="a2bb5c88539fe78cd0177c9f43bab1cb01681450" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/mp11"             name="boostorg/mp11"               remote="upstream" revision="1caff7ffa929662f57fac1dbea24c3d2d95205f6" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/mpl"              name="boostorg/mpl"                remote="upstream" revision="b37b709cbdb6b2c285fb808dab985aa005786351" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/numeric/conversion" name="boostorg/numeric_conversion" remote="upstream" revision="50a1eae942effb0a9b90724323ef8f2a67e7984a" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/optional"         name="boostorg/optional"           remote="upstream" revision="121f3efde91de78ca018019904732f55d33b5788" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/pool"             name="boostorg/pool"               remote="upstream" revision="ec7da07ed13e0c61e50d945b574a12ae7ec83cf4" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/predef"           name="boostorg/predef"             remote="upstream" revision="9aca7f5b609a731106a6d70e8dca9a4196dca968" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/preprocessor"     name="boostorg/preprocessor"       remote="upstream" revision="c4ea7e40d365ba28faecef8917d5c3f1e0121bf9" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/range"            name="boostorg/range"              remote="upstream" revision="2bb6b636796f7b008196888613f51f5bb347c77d" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/regex"            name="boostorg/regex"              remote="upstream" revision="4cbcd3078e6ae10d05124379623a1bf03fcb9350" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/smart_ptr"        name="boostorg/smart_ptr"          remote="upstream" revision="316f4cef77164a37b6a1a8891aa173910d3c2b46" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/static_assert"    name="boostorg/static_assert"      remote="upstream" revision="ba72d3340f3dc6e773868107f35902292f84b07e" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/system"           name="boostorg/system"             remote="upstream" revision="09f4eb87e21069d7d032acad62ebb30694fc8d5c" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/throw_exception"  name="boostorg/throw_exception"    remote="upstream" revision="ca85c198c81c1daeed31e6a5c920f499d360bade" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/tokenizer"        name="boostorg/tokenizer"          remote="upstream" revision="90106f155bd72b62aaca0d9ad826f4132030dba0" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/tuple"            name="boostorg/tuple"              remote="upstream" revision="fe90ca4023e66729e1118088f8b753024d2730fa" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/type_traits"      name="boostorg/type_traits"        remote="upstream" revision="cc6fc3daa8e20c4a70b563d67ceb4c34d8c1c4d7" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/typeof"           name="boostorg/typeof"             remote="upstream" revision="4bc9de322cd44373435540d4e6c8f207892fc9a0" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/unordered"        name="boostorg/unordered"          remote="upstream" revision="b41c054c66e7c71d6c6105a1e9da096f6731434d" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/utility"          name="boostorg/utility"            remote="upstream" revision="31de9279d826c8a6ae6126c0c4a8a32ea9f0edff" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/variant2"         name="boostorg/variant2"           remote="upstream" revision="a4b167b7238781d75df5d6684c9e9d40b26456dc" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
+  <project path="third_party/boost/libs/winapi"           name="boostorg/winapi"             remote="upstream" revision="ea553ab4d2e4cba1448d23a542993692c9d385f7" upstream="refs/tags/boost-1.87.0" clone-depth="1" />
 
   <project path="third_party/glm"                   name="g-truc/glm"                                     remote="upstream" revision="8d1fd52e5ab5590e2c81768ace50c72bae28f2ed" upstream="refs/tags/1.0.3"                clone-depth="1" />
   <project path="third_party/volk"                  name="zeux/volk"                                      remote="upstream" revision="3ca312a4f38baa63d8006b6905abbeeb89c8087d" upstream="refs/tags/vulkan-sdk-1.4.350.1" clone-depth="1" />
